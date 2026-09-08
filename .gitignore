@@ -1,0 +1,14 @@
+# compiled class files
+*.class
+
+# log files
+*.log
+
+# eclipse / sts specific files
+.classpath
+.project
+.settings/
+.springBeans
+
+# Maven build output
+target/
