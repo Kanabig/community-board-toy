@@ -1,4 +1,4 @@
-package com.office.member.user;
+package com.office.board.member.user;
 
 import org.springframework.stereotype.Controller;
 
