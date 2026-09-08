@@ -1,4 +1,4 @@
-package com.office.member.admin;
+package com.office.board.member.admin;
 
 import org.springframework.stereotype.Controller;
 
