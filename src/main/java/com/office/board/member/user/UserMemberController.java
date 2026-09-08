@@ -35,6 +35,5 @@ public class UserMemberController {
 		
 		return nextPage;
 	}
-	
-	
+  
 }
