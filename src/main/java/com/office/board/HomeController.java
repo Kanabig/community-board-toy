@@ -11,7 +11,7 @@ public class HomeController {
 	
 	private final String CLASS_NAME = "[HomeController] ";
 	
-	@GetMapping(value = {"", "/"})
+	@GetMapping(value = {"", "/", "/admin"})
 	public String home() {
 		System.out.println("==============================================");
 		System.out.println(CLASS_NAME.concat("home()"));
