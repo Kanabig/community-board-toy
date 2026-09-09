@@ -1,6 +1,5 @@
 package com.office.board.member.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -43,9 +42,10 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 		return result;
 	}
 	
-
+	/**
+	 * a_no에 해당하는 멤버의 a_phone 변경
+	 */
 	@Override
-	// a_no에 해당하는 계정 업데이트
 	public int updateMember(AdminMemberDto memberDto) {
 		System.out.println(CLASS_NAME.concat("updateMember()"));
 		
@@ -66,27 +66,52 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 		
 		return result;
 	}
-	
+
+	/**
+	 * a_no에 해당하는 멤버의 a_approval을 변경
+	 */
 	@Override
-	public AdminMemberDto selectMember(String userId) {
-		System.out.println(CLASS_NAME.concat("selectMember()"));
+	public int updateMemberApproval(AdminMemberDto adminMemberDto) {
+		System.out.println(CLASS_NAME.concat("updateMemberApproval()"));
 		
-		String sql = "SELECT * FROM tbl_admin WHERE a_id = ?";
-		List<AdminMemberDto> adminMemberDtos = new ArrayList<AdminMemberDto>();
-		
+		String sql = "UPDATE tbl_admin SET a_approval = ? WHERE a_no = ?";
+		int result = DB_CONNECTION_FAIL;
+
 		try {
-			adminMemberDtos = jdbcTemplate.query(
-					sql, 
-					BeanPropertyRowMapper.newInstance(AdminMemberDto.class),
-					userId
-					);
+			result = jdbcTemplate.update(
+					sql,
+					adminMemberDto.getA_approval(),
+					adminMemberDto.getA_no()
+			); 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}
 		
-		return adminMemberDtos.size() > 0 ? adminMemberDtos.get(0) : null;
+		return result;
+	}
+	
+	@Override
+	public AdminMemberDto selectMember(String userId) {
+		System.out.println(CLASS_NAME.concat("selectMember()"));
+		
+		String sql = "SELECT * FROM tbl_admin WHERE a_id = ?";
+		List<AdminMemberDto> adminMemberDtos = null;
+		
+		try {
+			adminMemberDtos = jdbcTemplate.query(
+					sql, 
+					BeanPropertyRowMapper.newInstance(AdminMemberDto.class),
+					userId
+			);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return adminMemberDtos != null ? adminMemberDtos.get(0) : null;
 	}
 	
 	@Override
@@ -94,43 +119,89 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 		System.out.println(CLASS_NAME.concat("selectMember()"));
 		
 		String sql = "SELECT * FROM tbl_admin WHERE a_no = ?";
-		List<AdminMemberDto> adminMemberDtos = new ArrayList<AdminMemberDto>();
+		List<AdminMemberDto> adminMemberDtos = null;
 		
 		try {
 			adminMemberDtos = jdbcTemplate.query(
 					sql, 
 					BeanPropertyRowMapper.newInstance(AdminMemberDto.class),
 					memberNo
-					);
+			);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}
 		
-		return adminMemberDtos.size() > 0 ? adminMemberDtos.get(0) : null;
+		return adminMemberDtos != null ? adminMemberDtos.get(0) : null;
 	}
 	
-//	@Override
-//	public List<AdminMemberDto> selectMembers(int memberNo) {
-//		System.out.println(CLASS_NAME.concat("selectMember()"));
-//		
-//		String sql = "SELECT * FROM tbl_admin WHERE a_no = ?";
-//		List<AdminMemberDto> adminMemberDtos = null;
-//		
-//		try {
-//			adminMemberDtos = jdbcTemplate.query(
-//					sql, 
-//					BeanPropertyRowMapper.newInstance(AdminMemberDto.class),
-//					memberNo
-//			);
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			
-//		}
-//		
-//		return adminMemberDtos;
-//	}
+	/**
+	 * a_id가 %keyword%조건에 걸리는 멤버들 반환
+	 */
+	@Override
+	public List<AdminMemberDto> selectMembersByKeywordOfId(String keyword) {
+		System.out.println(CLASS_NAME.concat("selectMemberByKeywordOfId()"));
+		
+		String sql = "SELECT * FROM tbl_admin WHERE a_id LIKE ?";
+		List<AdminMemberDto> adminMemberDtos = null;
+		
+		try {
+			adminMemberDtos = jdbcTemplate.query(
+					sql, 
+					BeanPropertyRowMapper.newInstance(AdminMemberDto.class),
+					"%" + keyword + "%"
+			);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return adminMemberDtos;
+	}
 	
+	@Override
+	public List<AdminMemberDto> selectAllMembers() {
+		System.out.println(CLASS_NAME.concat("selectAllMembers()"));
+		
+		String sql = "SELECT * FROM tbl_admin";
+		List<AdminMemberDto> adminMemberDtos = null;
+		
+		try {
+			adminMemberDtos = jdbcTemplate.query(
+					sql, 
+					BeanPropertyRowMapper.newInstance(AdminMemberDto.class)
+			);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return adminMemberDtos;
+	}
+
+
+	@Override
+	public void printDto(AdminMemberDto dto) {
+		System.out.println(CLASS_NAME.concat("printDto()"));
+
+		System.out.println("a_no: " + dto.getA_no());
+		System.out.println("a_id: " + dto.getA_id());
+		System.out.println("a_pw: " + dto.getA_pw());
+		System.out.println("a_phone: " + dto.getA_phone());
+		System.out.println("a_mod_date: " + dto.getA_mod_date());
+	}
+
+
+	@Override
+	public void printDtos(List<AdminMemberDto> dtos) {
+		System.out.println(CLASS_NAME.concat("printDtos()"));
+		
+		for(AdminMemberDto dto : dtos) {
+			printDto(dto);
+		}
+	}
+
 }
