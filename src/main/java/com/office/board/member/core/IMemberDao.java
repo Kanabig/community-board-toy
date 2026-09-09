@@ -1,4 +1,4 @@
-package com.office.board.member;
+package com.office.board.member.core;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ public interface IMemberDao<T> {
 	public int insertMember(T memberDto);
 	
 	public int updateMember(T memberDto);
-	public int updateMemberApproval(T memberDto);
 	
 	public boolean isExists(String memberId);
 	public boolean isExists(int memberNo);

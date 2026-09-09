@@ -1,7 +1,7 @@
 package com.office.board.member.admin;
 
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -22,4 +22,5 @@ public class AdminMemberDto {
 		setA_pw(a_pw);
 		setA_phone(a_phone);
 	}
+	
 }
