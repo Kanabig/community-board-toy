@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.office.board.member.IMemberDao;
-import com.office.library.user.member.UserMemberDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -76,6 +75,42 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return DB_CONNECTION_FAIL;
 	}
 
+	@Override
+	public boolean isExists(String memberId) {
+		System.out.println(CLASS_NAME.concat("isExists()"));
+		
+		String sql = "SELECT EXISTS (SELECT 1 FROM tbl_user WHERE u_id = ?)";
+		Boolean isMemberExists = false; 
+				
+		try {
+			isMemberExists = jdbcTemplate.queryForObject(sql, Boolean.class, memberId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return isMemberExists;
+	}
+
+	@Override
+	public boolean isExists(int memberNo) {
+		System.out.println(CLASS_NAME.concat("isExists()"));
+
+		String sql = "SELECT EXISTS (SELECT 1 FROM tbl_user WHERE u_no = ?)";
+		Boolean isMemberExists = false; 
+				
+		try {
+			isMemberExists = jdbcTemplate.queryForObject(sql, Boolean.class, memberNo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return isMemberExists;
+	}
+	
 	@Override
 	public UserMemberDto selectMember(String userId) {
 		System.out.println(CLASS_NAME.concat("selectMember()"));
@@ -184,44 +219,4 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		}
 	}
 
-	
-	
-	public boolean isUserMember(String u_id) {
-		System.out.println(CLASS_NAME.concat("isUserMember()"));
-		
-		String sql =  "SELECT COUNT(*) FROM tbl_user "
-					+ "WHERE u_id = ?";
-		
-		int result = jdbcTemplate.queryForObject(sql, Integer.class, u_id);
-		
-		return result > 0 ? true : false;
-		
-	}
-
-
-	public UserMemberDto selectUser(String u_id) {
-		System.out.println(CLASS_NAME.concat("selectUser()"));
-		
-		String sql =  "SELECT * FROM tbl_user_member "
-					+ "WHERE u_m_id = ?";
-		
-		List<UserMemberDto> userMemberDtos = new ArrayList<UserMemberDto>();
-		
-		try {
-			
-			RowMapper<UserMemberDto> rowMapper = BeanPropertyRowMapper.newInstance(UserMemberDto.class);
-			userMemberDtos = jdbcTemplate.query(sql, rowMapper, u_id);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
-		
-		return userMemberDtos.size() > 0 ? userMemberDtos.get(0) : null;
-		
-	}
-	}
-
-	
-	
 }
