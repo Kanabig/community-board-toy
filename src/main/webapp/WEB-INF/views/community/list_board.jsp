@@ -22,6 +22,17 @@
 				<h3>게시글 목록</h3>
 			</div>
 		
+			<div class="search">
+			
+				<form action="<c:url value='/community/searchBoards' />" method="get">
+				
+					<input type="text" name="keyword" value="${keyword}" placeholder="검색어를 입력하세요.">
+					<input type="submit" value="검색">
+					<a href="<c:url value='/community/listBoard' />">전체목록</a>
+				
+				</form>
+				
+			</div>	
 			<div class="board_list">
 		
 				<table>

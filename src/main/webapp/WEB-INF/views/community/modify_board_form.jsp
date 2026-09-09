@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시글 수정</title>
 
 <link href="<c:url value='/resources/css/community/modify_board_form.css' />" rel="stylesheet" type="text/css">
 

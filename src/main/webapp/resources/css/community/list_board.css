@@ -81,3 +81,29 @@ section {
 #section_wrap .buttons a:hover {
 	background-color: #dedede;
 }
+
+#section_wrap .search {
+    width: 1024px;
+    margin: 15px auto;
+    text-align: right;
+}
+
+#section_wrap .search input[type="text"] {
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#section_wrap .search input[type="submit"] {
+    padding: 8px 15px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#section_wrap .search a {
+    display: inline-block;
+    padding: 8px 12px;
+    color: #333;
+}

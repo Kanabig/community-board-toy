@@ -69,7 +69,21 @@ public class CommunityBoardService {
 	    System.out.println(CLASS_NAME.concat("searchBoards()"));
 
 	    return communityBoardDao.searchBoards(keyword);
+	    
 	}
 	
+	public List<CommunityBoardDto> listBoard(int page) {
+	    System.out.println(CLASS_NAME.concat("listBoard(page)"));
+
+	    return communityBoardDao.selectBoardsByPage(page);
+	    
+	}
+
+	public int getBoardCount() {
+	    System.out.println(CLASS_NAME.concat("getBoardCount()"));
+
+	    return communityBoardDao.selectBoardCount();
+	    
+	}
 	
 }
