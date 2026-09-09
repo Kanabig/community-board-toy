@@ -65,4 +65,11 @@ public class CommunityBoardService {
 		
 	}
 	
+	public List<CommunityBoardDto> searchBoards(String keyword) {
+	    System.out.println(CLASS_NAME.concat("searchBoards()"));
+
+	    return communityBoardDao.searchBoards(keyword);
+	}
+	
+	
 }

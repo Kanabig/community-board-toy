@@ -13,46 +13,60 @@
 
 </head>
 <body>
+
+	<section>
 	
-	<h3>게시글 목록</h3>
-	
-	<table>
-	
-		<thead>
-			<tr>
-				<th>번호</th>
-				<th>작성자</th>
-				<th>제목</th>
-				<th>등록일</th>
-			</tr>
-		</thead>
+		<div id="section_wrap">
 		
-		<tbody>
+			<div class="word">
+				<h3>게시글 목록</h3>
+			</div>
 		
-			<c:forEach var="board" items="${communityBoardDtos}">
+			<div class="board_list">
+		
+				<table>
 				
-				<tr>
-					<td>${board.cb_no}</td>
-					<td>${board.cb_id}</td>
-					<td>
-						<a href="<c:url value='/community/detailBoard'>
-						<c:param name='cb_no' value='${board.cb_no}'/>
-						</c:url>">
-						${board.cb_title}
-						</a>
-					</td>
-					<td>${board.cb_reg_date}</td>					
-				</tr>
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>작성자</th>
+							<th>제목</th>
+							<th>등록일</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+					
+						<c:forEach var="board" items="${communityBoardDtos}">
+							
+							<tr>
+								<td>${board.cb_no}</td>
+								<td>${board.cb_id}</td>
+								<td>
+									<a href="<c:url value='/community/detailBoard'>
+									<c:param name='cb_no' value='${board.cb_no}'/>
+									</c:url>">
+									${board.cb_title}
+									</a>
+								</td>
+								<td>${board.cb_reg_date}</td>					
+							</tr>
+							
+						</c:forEach>
+					
+					</tbody>
 				
-			</c:forEach>
+				</table>
+			
+			</div>
 		
-		</tbody>
-	
-	</table>
-	
-	<br>
-	
-	<a href="<c:url value='/community/writeBoardForm' />">게시글 작성</a>
+			<div class="buttons">
+	            <a href="<c:url value='/community/writeBoardForm' />">게시글 작성</a>
+	        </div>
+	        
+		</div>
+		
+	</section>
 	
 </body>
 </html>

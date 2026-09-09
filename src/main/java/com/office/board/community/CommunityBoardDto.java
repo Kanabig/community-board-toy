@@ -6,7 +6,7 @@ public class CommunityBoardDto {
 	private String cb_id;		// 아이디
 	private String cb_title;	// 제목
 	private String cb_comment;	// 내용
-	private int cb_deleted;	// 삭제
+	private int cb_deleted;		// 삭제
 	private String cb_reg_date;	// 등록일
 	private String cb_mod_date;	// 최근 수정일
 	

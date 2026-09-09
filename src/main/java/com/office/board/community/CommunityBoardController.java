@@ -254,4 +254,23 @@ public class CommunityBoardController {
 	    
 	}
 	
+	/*
+	 * 게시글 검색
+	 */
+	@GetMapping("/searchBoards")
+	public ModelAndView searchBoards(@RequestParam("keyword") String keyword) {
+	    System.out.println(CLASS_NAME.concat("searchBoards()"));
+
+	    List<CommunityBoardDto> communityBoardDtos = communityBoardService.searchBoards(keyword);
+
+	    ModelAndView modelAndView = new ModelAndView();
+
+	    modelAndView.setViewName("community/list_board");
+	    modelAndView.addObject("communityBoardDtos",communityBoardDtos);
+	    modelAndView.addObject("keyword",keyword);
+
+	    return modelAndView;
+	    
+	}
+	
 }
