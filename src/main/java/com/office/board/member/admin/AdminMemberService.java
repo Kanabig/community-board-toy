@@ -1,7 +1,13 @@
 package com.office.board.member.admin;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.office.board.community.CommunityBoardDao;
+import com.office.board.member.user.UserMemberDao;
+import com.office.board.member.user.UserMemberDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,6 +22,8 @@ public class AdminMemberService {
 	final static public int ADMIN_ACCOUNT_CREATE_FAIL 		= -1;
 	
 	final private AdminMemberDao adminMemberDao;
+	final private CommunityBoardDao communityBoardDao;
+	final private UserMemberDao userMemberDao;
 	final private PasswordEncoder passwordEncoder;
 	
 	
@@ -71,6 +79,50 @@ public class AdminMemberService {
 			System.out.println(CLASS_NAME.concat("ADMIN LOGIN FAIL"));
 			return null;
 		}
+	}
+
+
+	public List<AdminMemberDto> listupAdminMember() {
+		System.out.println(CLASS_NAME.concat("listupAdminMember()"));
+		
+//		return AdminMemberDao.selectAdminMembers();
+		return null;
+	}
+
+
+	public List<UserMemberDto> listupUserMember() {
+		System.out.println(CLASS_NAME.concat("listupUserMember()"));
+		
+//		return UserMemberDao.selectUserMembers();
+		return null;
+	}
+
+
+	public void setAdminApproval(int a_no) {
+		System.out.println(CLASS_NAME.concat("listupUserMember()"));
+		
+//		int result = adminMemberDao.updateAdminApproval(a_no);
+//		
+//		if (result > 0) {
+//			System.out.println("ADMIN APPROVAL UPDATE SUCCESS");
+//			
+//		} else {
+//			System.out.println("ADMIN APPROVAL UPDATE FAIL");
+//		}
+	}
+
+
+	public void setDeletedBoard(int cb_no) {
+		System.out.println(CLASS_NAME.concat("setDeletedBoard()"));
+		
+//		int result = communityBoardDao.updateDeletedBoard(cb_no);
+//		
+//		if (result > 0) {
+//			System.out.println("COMMUNITY BOARD DELETE SUCCESS");
+//			
+//		} else {
+//			System.out.println("COMMUNITY BOARD DELETE FAIL");
+//		}
 	}
 	
 	
