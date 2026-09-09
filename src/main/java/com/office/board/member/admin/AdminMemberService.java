@@ -85,44 +85,42 @@ public class AdminMemberService {
 	public List<AdminMemberDto> listupAdminMember() {
 		System.out.println(CLASS_NAME.concat("listupAdminMember()"));
 		
-//		return AdminMemberDao.selectAdminMembers();
-		return null;
+		return adminMemberDao.selectAllMembers();
 	}
 
 
 	public List<UserMemberDto> listupUserMember() {
 		System.out.println(CLASS_NAME.concat("listupUserMember()"));
 		
-//		return UserMemberDao.selectUserMembers();
-		return null;
+		return userMemberDao.selectAllMembers();
 	}
 
 
-	public void setAdminApproval(int a_no) {
+	public void setAdminApproval(AdminMemberDto adminMemberDto) {
 		System.out.println(CLASS_NAME.concat("listupUserMember()"));
 		
-//		int result = adminMemberDao.updateAdminApproval(a_no);
-//		
-//		if (result > 0) {
-//			System.out.println("ADMIN APPROVAL UPDATE SUCCESS");
-//			
-//		} else {
-//			System.out.println("ADMIN APPROVAL UPDATE FAIL");
-//		}
+		int result = adminMemberDao.updateMemberApproval(adminMemberDto);
+		
+		if (result > 0) {
+			System.out.println("ADMIN APPROVAL UPDATE SUCCESS");
+			
+		} else {
+			System.out.println("ADMIN APPROVAL UPDATE FAIL");
+		}
 	}
 
 
 	public void setDeletedBoard(int cb_no) {
 		System.out.println(CLASS_NAME.concat("setDeletedBoard()"));
 		
-//		int result = communityBoardDao.updateDeletedBoard(cb_no);
-//		
-//		if (result > 0) {
-//			System.out.println("COMMUNITY BOARD DELETE SUCCESS");
-//			
-//		} else {
-//			System.out.println("COMMUNITY BOARD DELETE FAIL");
-//		}
+		int result = communityBoardDao.deleteBoard(cb_no);
+		
+		if (result > 0) {
+			System.out.println("COMMUNITY BOARD DELETE SUCCESS");
+			
+		} else {
+			System.out.println("COMMUNITY BOARD DELETE FAIL");
+		}
 	}
 	
 	

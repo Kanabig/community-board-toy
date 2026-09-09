@@ -7,15 +7,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.cj.Session;
 import com.office.board.member.user.UserMemberDto;
 
 import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequestMapping("/admin/member")
 @RequiredArgsConstructor
 public class AdminMemberController {
 	
@@ -31,7 +32,7 @@ public class AdminMemberController {
 	public String createAccountForm() {
 		System.out.println(CLASS_NAME.concat("createAccountForm()"));
 		
-		String nextPage = "member/admin/create_account_form";
+		String nextPage = "admin/member/create_account_form";
 		
 		return nextPage;
 		
@@ -45,12 +46,12 @@ public class AdminMemberController {
 	public String createAccountConfirm(AdminMemberDto adminMemberDto) {
 		System.out.println(CLASS_NAME.concat("createAccountConfirm()"));
 		
-		String nextPage = "member/admin/create_account_ok";
+		String nextPage = "admin/member/create_account_ok";
 		
 		int result = adminMemberService.createAccountConfirm(adminMemberDto);
 		
 		if (result <= AdminMemberService.ADMIN_ACCOUNT_ALREADY_EXIST)
-			nextPage = "member/admin/create_account_ng";
+			nextPage = "admin/member/create_account_ng";
 		
 		return nextPage;
 		
@@ -64,7 +65,7 @@ public class AdminMemberController {
 	public String loginForm() {
 		System.out.println(CLASS_NAME.concat("loginForm()"));
 		
-		String nextPage = "member/admin/login_form";
+		String nextPage = "admin/member/login_form";
 		
 		return nextPage;
 		
@@ -80,12 +81,12 @@ public class AdminMemberController {
 			HttpSession session) {
 		System.out.println(CLASS_NAME.concat("loginConfirm()"));
 		
-		String nextPage = "member/admin/login_ok";
+		String nextPage = "admin/member/login_ok";
 		
 		String loginedAdminMemberId = adminMemberService.loginConfirm(adminMemberDto);
 		
 		if (loginedAdminMemberId == null) {
-			nextPage = "member/admin/login_ng";
+			nextPage = "admin/member/login_ng";
 			
 		} else {
 			session.setAttribute("loginedAdminMemberId", loginedAdminMemberId);
@@ -119,13 +120,13 @@ public class AdminMemberController {
 	public ModelAndView listupAdminMember(HttpSession session) {
 		System.out.println(CLASS_NAME.concat("listupAdminMember()"));
 		
-		String nextPage = "member/admin/listup_admin_member";
+		String nextPage = "admin/member/listup_admin_member";
 		
 		Object object = session.getAttribute("loginedAdminMemberId");
 		
 		if (object == null) {
 			ModelAndView modelAndView = new ModelAndView();
-			modelAndView.setViewName("redirect:/member/admin/login_form");
+			modelAndView.setViewName("redirect:/admin/member/login_form");
 			
 			return modelAndView;
 			
@@ -148,13 +149,13 @@ public class AdminMemberController {
 	public ModelAndView listupUserMember(HttpSession session) {
 		System.out.println(CLASS_NAME.concat("listupUserMember()"));
 		
-		String nextPage = "member/admin/listup_user_member";
+		String nextPage = "admin/member/listup_user_member";
 		
 		Object object = session.getAttribute("loginedAdminMemberId");
 		
 		if (object == null) {
 			ModelAndView modelAndView = new ModelAndView();
-			modelAndView.setViewName("redirect:/member/admin/login_form");
+			modelAndView.setViewName("redirect:/admin/member/login_form");
 			
 			return modelAndView;
 			
@@ -175,16 +176,22 @@ public class AdminMemberController {
 	@GetMapping("/setAdminApproval")
 	public String setAdminApproval(
 			@RequestParam("a_no") int a_no,
+			@RequestParam("a_approval") int a_approval,
 			HttpSession session) {
 		System.out.println(CLASS_NAME.concat("setAdminApproval()"));
 		
 		Object object = session.getAttribute("loginedAdminMemberId");
 		if (object == null)
-			return "redirect:/member/admin/login_form";
+			return "redirect:/admin/member/login_form";
 		
-		String nextPage = "redirect:/member/admin/listup_admin_members";
+		String nextPage = "redirect:/admin/member/listup_admin_members";
 		
-		adminMemberService.setAdminApproval(a_no);
+		AdminMemberDto adminMemberDto = new AdminMemberDto();
+		
+		adminMemberDto.setA_no(a_no);
+		adminMemberDto.setA_approval(1);
+		
+		adminMemberService.setAdminApproval(adminMemberDto);
 		
 		return nextPage;
 	}
@@ -200,9 +207,9 @@ public class AdminMemberController {
 		
 		Object object = session.getAttribute("loginedAdminMemberId");
 		if (object == null)
-			return "redirect:/member/admin/login_form";
+			return "redirect:/admin/member/login_form";
 		
-		String nextPage = "redirect:/member/admin/list_board_admin";
+		String nextPage = "redirect:/admin/member/list_board_admin";
 		
 		adminMemberService.setDeletedBoard(cb_no);
 		
