@@ -19,8 +19,16 @@ public class UserMemberController {
 	
 	final private UserMemberService userMemberService;
 	
-	
-	
+
+
+    @GetMapping("/")
+    public String home() {
+        System.out.println(CLASS_NAME.concat("home()"));
+
+        String nextPage = "user/home";
+
+        return nextPage;
+    }
 	
 	@GetMapping("/createAccountForm")
 	public String createAccountForm() {
@@ -90,12 +98,6 @@ public class UserMemberController {
 		
 		return nextPage;
 		
-		/*
-		<form action="${pageContext.request.contextPath}/logoutConfirm" method="get">
-	    <button type="submit">·Î±×¾Æ¿ô</button>
-		</form>
-		*/
-		
 	}
 	
 	@GetMapping("/modifyAccountForm")
@@ -112,5 +114,21 @@ public class UserMemberController {
 		
 		return nextPage;
 	}
+	
+	@PostMapping("/modifyAccountConfirm")
+	public String modifyAccountConfirm(UserMemberDto userMemberDto) {
+		System.out.println(CLASS_NAME.concat("modifyAccountConfirm()"));
+		
+		String nextPage = "user/member/modify_account_ok";
+		
+		int result = userMemberService.modifyAccountConfirm(userMemberDto);
+		
+		if (result <= 0)
+			nextPage = "user/member/modify_account_ng";
+		
+		return nextPage;
+		
+	}
+	
 	
 }

@@ -5,11 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<jsp:include page="../../include/title.jsp" />
+
+<link href="<c:url value='/resources/css/user/login_form.css'/>" rel="stylesheet" type="text/css">
 
 <jsp:include page="../include/login_form_js.jsp" />
 
 </head>
 <body>
+
+	<jsp:include page="../../include/header.jsp" />
+	
+	<jsp:include page="../include/nav.jsp" />
 
 	<section>
 	
@@ -41,7 +48,7 @@
 	
 	</section>
 
-	
+	<jsp:include page="../../include/footer.jsp" />
 	
 
 </body>
