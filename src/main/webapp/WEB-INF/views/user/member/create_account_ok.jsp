@@ -7,9 +7,11 @@
 </head>
 <body>
 
+	 <!-- 
 	<jsp:include page="../../include/header.jsp" />
 	
 	<jsp:include page="../include/nav.jsp" />
+	 -->
 
 	<section>
 	
@@ -19,7 +21,7 @@
 		
 		<div class="others">
 				<a href="<c:url value='/user/member/createAccountForm'/>">create account</a>
-				<a href="<c:url value='#none'/>">login</a>
+				<a href="<c:url value='/user/member/loginForm'/>">login</a>
 			</div>
 	
 	</section>
