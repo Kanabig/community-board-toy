@@ -6,8 +6,10 @@ public class CommunityBoardDto {
 	private String cb_id;		// 아이디
 	private String cb_title;	// 제목
 	private String cb_comment;	// 내용
+	private int cb_deleted;	// 삭제
 	private String cb_reg_date;	// 등록일
 	private String cb_mod_date;	// 최근 수정일
+	
 	
 	public int getCb_no() {
 		return cb_no;
@@ -32,6 +34,12 @@ public class CommunityBoardDto {
 	}
 	public void setCb_comment(String cb_comment) {
 		this.cb_comment = cb_comment;
+	}
+	public int getCb_deleted() {
+		return cb_deleted;
+	}
+	public void setCb_deleted(int cb_deleted) {
+		this.cb_deleted = cb_deleted;
 	}
 	public String getCb_reg_date() {
 		return cb_reg_date;
