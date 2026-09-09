@@ -12,7 +12,7 @@
 			</ul>
 		</div>
 		<div class="title">
-			<h3>대전 도서관 - 도서 대여 서비스</h3>
+			<h3>COMMUNITY BOARD</h3>
 		</div>
 	</div>
 
