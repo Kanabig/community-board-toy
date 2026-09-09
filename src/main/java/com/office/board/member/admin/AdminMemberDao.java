@@ -1,18 +1,17 @@
 package com.office.board.member.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.office.board.member.IMemberDao;
-
 import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
+public class AdminMemberDao implements IAdminMemberDao {
 	
 	private final String CLASS_NAME = "[AdminMemberDao] ";
 	private final int DB_CONNECTION_FAIL = -1;
@@ -133,7 +132,7 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 		System.out.println(CLASS_NAME.concat("selectMember()"));
 		
 		String sql = "SELECT * FROM tbl_admin WHERE a_id = ?";
-		List<AdminMemberDto> adminMemberDtos = null;
+		List<AdminMemberDto> adminMemberDtos = new ArrayList<AdminMemberDto>();
 		
 		try {
 			adminMemberDtos = jdbcTemplate.query(
@@ -147,7 +146,7 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 			
 		}
 		
-		return adminMemberDtos != null ? adminMemberDtos.get(0) : null;
+		return adminMemberDtos.size() > 0 ? adminMemberDtos.get(0) : null;
 	}
 	
 	@Override
@@ -155,7 +154,7 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 		System.out.println(CLASS_NAME.concat("selectMember()"));
 		
 		String sql = "SELECT * FROM tbl_admin WHERE a_no = ?";
-		List<AdminMemberDto> adminMemberDtos = null;
+		List<AdminMemberDto> adminMemberDtos = new ArrayList<AdminMemberDto>();
 		
 		try {
 			adminMemberDtos = jdbcTemplate.query(
@@ -169,7 +168,7 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 			
 		}
 		
-		return adminMemberDtos != null ? adminMemberDtos.get(0) : null;
+		return adminMemberDtos.size() > 0 ? adminMemberDtos.get(0) : null;
 	}
 	
 	/**
