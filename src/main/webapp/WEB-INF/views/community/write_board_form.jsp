@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,25 +14,45 @@
 </head>
 <body>
 	
-	<h3>게시글 작성</h3>
+	<section>
+
+	    <div id="section_wrap">
 	
-	<form action="<%=request.getContextPath()%>/community/writeBoardConfirm" method="post">
+	        <div class="word">
+	            <h3>게시글 작성</h3>
+	        </div>
+	        <div class="write_board_form">
 	
-		<div>
-			제목
-			<input type="text" name="cb_title">
-		</div>
-		
-		<div>
-			내용
-			<textarea name="cb_comment"></textarea>
-		</div>
-		
-		<div>
-			<input type="submit" value="글 등록">
-		</div>
+	            <form action="<c:url value='/community/writeBoardConfirm' />" method="post">
 	
-	</form>
+	                <table>
+	
+	                    <tr>
+	                        <th>제목</th>
+	                        <td><input type="text" name="cb_title" placeholder="제목을 입력하세요." required></td>
+	                    </tr>
+	
+	                    <tr>
+	                        <th>내용</th>
+	                        <td><textarea name="cb_comment" placeholder="내용을 입력하세요." required></textarea></td>
+	                    </tr>
+	                    
+	                </table>
+	
+	                <div class="buttons">
+	
+	                    <input type="submit"value="등록">
+	                    <a href="<c:url value='/community/listBoard' />">취소</a>
+	
+	                </div>
+	
+	            </form>
+	
+	        </div>
+	
+	    </div>
+	
+	</section>
 	
 </body>
 </html>

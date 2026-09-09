@@ -14,46 +14,72 @@
 </head>
 <body>
 
-	<h3>게시글 상세</h3>
+	<section>
+
+	    <div id="section_wrap">
 	
-	    <table border="1">
+	        <div class="word">
+	            <h3>게시글 상세</h3>
+	        </div>
+	        
+	        <div class="board_detail">
 	
-	        <tr>
-	            <th>번호</th>
-	            <td>${communityBoardDto.cb_no}</td>
-	        </tr>
-	        <tr>
-	            <th>작성자</th>
-	            <td>${communityBoardDto.cb_id}</td>
-	        </tr>
-	        <tr>
-	            <th>제목</th>
-	            <td>${communityBoardDto.cb_title}</td>
-	        </tr>
-	        <tr>
-	            <th>내용</th>
-	            <td>${communityBoardDto.cb_comment}</td>
-	        </tr>
-	        <tr>
-	            <th>등록일</th>
-	            <td>${communityBoardDto.cb_reg_date}</td>
-	        </tr>
-	        <tr>
-	            <th>수정일</th>
-	            <td>${communityBoardDto.cb_mod_date}</td>
-	        </tr>
+	            <table>
 	
-	    </table>
+	                <tr>
+	                    <th>번호</th>
+	                    <td>${communityBoardDto.cb_no}</td>
+	                </tr>
 	
-	    <br>
-	    <a href="<%=request.getContextPath()%>/community/listBoard">목록</a>
-	    
-	    <c:if test="${sessionScope.loginedUserMemberId eq communityBoardDto.cb_id}">
-	    
-		    <a href="<%=request.getContextPath()%>/community/modifyBoardForm?cb_no=${communityBoardDto.cb_no}">수정</a>
-		    <a href="<%=request.getContextPath()%>/community/deleteBoardConfirm?cb_no=${communityBoardDto.cb_no}">삭제</a>
-		    
-		</c:if>
+	                <tr>
+	                    <th>작성자</th>
+	                    <td>${communityBoardDto.cb_id}</td>
+	                </tr>
+	
+	                <tr>
+	                    <th>제목</th>
+	                    <td>${communityBoardDto.cb_title}</td>
+	                </tr>
+	
+	                <tr class="content_row">
+	                    <th>내용</th>
+	                    <td>${communityBoardDto.cb_comment}</td>
+	                </tr>
+	
+	                <tr>
+	                    <th>등록일</th>
+	                    <td>${communityBoardDto.cb_reg_date}</td>
+	                </tr>
+	
+	                <tr>
+	                    <th>수정일</th>
+	                    <td>${communityBoardDto.cb_mod_date}</td>
+	                </tr>
+	
+	            </table>
+	
+	        </div>
+	        <div class="buttons">
+	
+	            <a href="<c:url value='/community/listBoard' />">목록</a>
+	
+	            <c:if test="${sessionScope.loginedUserMemberId eq communityBoardDto.cb_id}">
+	
+	                <a href="<c:url value='/community/modifyBoardForm'>
+	                    <c:param name='cb_no' value='${communityBoardDto.cb_no}' />
+	                    </c:url>">수정</a>
+	
+	                <a href="<c:url value='/community/deleteBoardConfirm'>
+	                    <c:param name='cb_no' value='${communityBoardDto.cb_no}' />
+	                    </c:url>">삭제</a>
+	
+	            </c:if>
+	
+	        </div>
+	
+	    </div>
+	
+	</section>
 
 </body>
 </html>

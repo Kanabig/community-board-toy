@@ -145,5 +145,29 @@ public class CommunityBoardDao {
         return result;
         
     }
+    
+    public List<CommunityBoardDto> searchBoards(String keyword) {
+        System.out.println(CLASS_NAME.concat("searchBoards()"));
+
+        String sql = "SELECT * FROM tbl_community_board "
+                   + "WHERE cb_deleted = 0 "
+                   + "AND (cb_title LIKE ? "
+                   + "OR cb_comment LIKE ?) "
+                   + "ORDER BY cb_reg_date DESC";
+
+        List<CommunityBoardDto> communityBoardDtos = null;
+
+        try {
+            communityBoardDtos = jdbcTemplate.query(sql,
+            		BeanPropertyRowMapper.newInstance(CommunityBoardDto.class), "%" + keyword + "%", "%" + keyword + "%");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+
+        return communityBoardDtos;
+        
+    }
 
 }
