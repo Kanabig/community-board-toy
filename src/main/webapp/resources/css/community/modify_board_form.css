@@ -1,0 +1,64 @@
+section {
+	margin: 30px 0;
+}
+
+#section_wrap {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+#section_wrap .word {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#section_wrap .modify_board_form {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#section_wrap .modify_board_form input[type='text'] {
+	width: 500px;
+	margin: 3px;
+}
+
+#section_wrap .modify_board_form textarea {
+	width: 500px;
+	height: 220px;
+	margin: 3px;
+	padding: 10px;
+	border: 1px solid #adadad;
+	border-radius: 5px;
+	resize: vertical;
+}
+
+#section_wrap .modify_board_form input[type='submit'],
+#section_wrap .modify_board_form input[type='reset'] {
+	width: 120px;
+	margin-top: 10px;
+	padding: 10px;
+	border: 1px solid #adadad;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#section_wrap .buttons {
+	width: 1024px;
+	margin: 0 auto;
+	text-align: right;
+}
+
+#section_wrap .buttons a {
+	width: 100px;
+	display: inline-block;
+	margin: 15px 0;
+	padding: 8px 0;
+	text-align: center;
+	border: 1px solid #adadad;
+	border-radius: 5px;
+	color: #2e2e2e;
+	background-color: #f0f0f0;
+	font-weight: bolder;
+}
