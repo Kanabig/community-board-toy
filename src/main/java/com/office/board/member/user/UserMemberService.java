@@ -90,8 +90,19 @@ public class UserMemberService {
 	}
 
 	public UserMemberDto modifyAccountForm(String loginedUserMemberId) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(CLASS_NAME.concat("modifyAccountForm()"));
+		
+		UserMemberDto loginedUserMemberDto =
+				userMemberDao.selectMember(loginedUserMemberId);
+		
+		return loginedUserMemberDto;
+	}
+
+	public int modifyAccountConfirm(UserMemberDto userMemberDto) {
+		
+		int result = userMemberDao.updateMember(userMemberDto);
+		
+		return result;
 	}
 
 	
