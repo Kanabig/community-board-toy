@@ -22,7 +22,21 @@ public class AdminMemberController {
 	
 	final private String CLASS_NAME = "[AdminMemberController] ";
 	
-	final private AdminMemberService adminMemberService;
+	final private AdminMemberService adminMemberService; 
+	
+	/*
+	 * 관리자 홈
+	 * /admin/member/
+	 */
+	@GetMapping("/")
+	public String home() {
+		System.out.println(CLASS_NAME.concat("home()"));
+		
+		String nextPage = "admin/home";
+		
+		return nextPage;
+		
+	}
 
 	/*
 	 * 관리자 회원가입 양식
@@ -198,6 +212,7 @@ public class AdminMemberController {
 	
 	/*
 	 * 게시글 삭제
+	 * /community/deleteBoardConfirm
 	 */
 	@GetMapping("/setDeletedBoard")
 	public String setDeletedBoard(
@@ -209,7 +224,7 @@ public class AdminMemberController {
 		if (object == null)
 			return "redirect:/admin/member/login_form";
 		
-		String nextPage = "redirect:/admin/member/list_board_admin";
+		String nextPage = "redirect:/community/detail_board";
 		
 		adminMemberService.setDeletedBoard(cb_no);
 		
