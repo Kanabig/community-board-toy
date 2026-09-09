@@ -26,7 +26,7 @@ public class AdminMemberController {
 
 	/*
 	 * 관리자 회원가입 양식
-	 * member/admin/createAccountForm
+	 * /admin/member/createAccountForm
 	 */
 	@GetMapping("/createAccountForm")
 	public String createAccountForm() {
@@ -40,7 +40,7 @@ public class AdminMemberController {
 	
 	/*
 	 * 관리자 회원가입 확인
-	 * member/admin/createAccountConfirm
+	 *  /admin/member/createAccountConfirm
 	 */
 	@PostMapping("/createAccountConfirm")
 	public String createAccountConfirm(AdminMemberDto adminMemberDto) {
@@ -59,7 +59,7 @@ public class AdminMemberController {
 	
 	/*
 	 * 관리자 로그인 양식
-	 * member/admin/loginForm
+	 *  /admin/member/loginForm
 	 */
 	@GetMapping("/loginForm")
 	public String loginForm() {
@@ -73,7 +73,7 @@ public class AdminMemberController {
 	
 	/*
 	 * 관리자 로그인 확인
-	 * member/admin/loginConfirm
+	 *  /admin/member/loginConfirm
 	 */
 	@PostMapping("/loginConfirm")
 	public String loginConfirm(
@@ -99,7 +99,7 @@ public class AdminMemberController {
 	
 	/*
 	 * 관리자 로그아웃 확인
-	 * /member/admin/logoutConfirm
+	 *  /admin/member/logoutConfirm
 	 */
 	@GetMapping("/logoutConfirm")
 	public String logoutConfirm(HttpSession session) {
@@ -114,7 +114,7 @@ public class AdminMemberController {
 	
 	/*
 	 * 관리자 목록 확인
-	 * /member/admin/listupAdminMember
+	 *  /admin/member/listupAdminMember
 	 */
 	@GetMapping("/listupAdminMember")
 	public ModelAndView listupAdminMember(HttpSession session) {
@@ -143,7 +143,7 @@ public class AdminMemberController {
 	
 	/*
 	 * 사용자 목록 확인
-	 * /member/user/listupAdminMember
+	 * /admin/member/listupAdminMember
 	 */
 	@GetMapping("/listupUserMember")
 	public ModelAndView listupUserMember(HttpSession session) {
@@ -184,7 +184,7 @@ public class AdminMemberController {
 		if (object == null)
 			return "redirect:/admin/member/login_form";
 		
-		String nextPage = "redirect:/admin/member/listup_admin_members";
+		String nextPage = "redirect:/admin/member/listup_admin_member";
 		
 		AdminMemberDto adminMemberDto = new AdminMemberDto();
 		

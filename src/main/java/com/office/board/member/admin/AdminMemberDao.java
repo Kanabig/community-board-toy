@@ -1,5 +1,6 @@
 package com.office.board.member.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -133,7 +134,7 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 		System.out.println(CLASS_NAME.concat("selectMember()"));
 		
 		String sql = "SELECT * FROM tbl_admin WHERE a_id = ?";
-		List<AdminMemberDto> adminMemberDtos = null;
+		List<AdminMemberDto> adminMemberDtos = new ArrayList<AdminMemberDto>();
 		
 		try {
 			adminMemberDtos = jdbcTemplate.query(

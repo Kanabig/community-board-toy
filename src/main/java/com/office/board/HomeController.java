@@ -16,7 +16,7 @@ public class HomeController {
 		System.out.println("==============================================");
 		System.out.println(CLASS_NAME.concat("home()"));
 		
-		return "home";
+		return "redirect:/community/listBoard";
 	}
 	
 }
