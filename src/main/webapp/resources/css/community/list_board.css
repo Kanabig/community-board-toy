@@ -3,18 +3,18 @@ section {
 }
 
 #section_wrap {
-	width: 1200px;
-	margin: 0 auto;
+	width: 940px;
+	margin: 0;
 }
 
 #section_wrap .word {
-	width: 1024px;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
 
 #section_wrap .board_list {
-	width: 1024px;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -60,7 +60,7 @@ section {
 }
 
 #section_wrap .buttons {
-	width: 1024px;
+	width: 100%;
 	margin: 0 auto;
 	text-align: right;
 }
@@ -83,7 +83,7 @@ section {
 }
 
 #section_wrap .search {
-    width: 1024px;
+    width: 100%;
     margin: 15px auto;
     text-align: right;
 }
@@ -106,4 +106,71 @@ section {
     display: inline-block;
     padding: 8px 12px;
     color: #333;
+}
+
+#section_wrap .paging {
+	width: 100%;
+	margin: 20px auto 0;
+	text-align: center;
+}
+
+#section_wrap .paging a {
+	display: inline-block;
+	min-width: 30px;
+	margin: 0 3px;
+	padding: 7px 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: #333;
+	text-decoration: none;
+	background-color: #fff;
+}
+
+#section_wrap .paging a:hover {
+	background-color: #eee;
+}
+
+#section_wrap .paging a.active {
+	background-color: #a5a5a5;
+	color: #fff;
+	font-weight: bold;
+}
+
+.community_layout {
+	width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	gap: 30px;
+	align-items: flex-start;
+}
+
+.side_ad {
+	width: 230px;
+	flex-shrink: 0;
+	position: relative;
+	border: 1px solid #ddd;
+	background-color: #fff;
+}
+
+.side_ad .ad_text {
+	position: absolute;
+	top: 5px;
+	left: 7px;
+	z-index: 10;
+	
+	padding: 2px 5px;
+	
+	font-size: 11px;
+	color: #777;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.side_ad img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.side_ad:hover {
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
 }
