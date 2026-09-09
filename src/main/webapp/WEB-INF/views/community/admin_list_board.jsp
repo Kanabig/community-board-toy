@@ -7,14 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판 목록</title>
+<title>관리자 게시판</title>
 
 <link href="<c:url value='/resources/css/community/list_board.css' />" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-
-	<jsp:include page="/WEB-INF/views/user/include/nav.jsp" />
 
 	<section>
 	
@@ -24,7 +22,7 @@
 			
 				<div class="ad_text">광고</div>
 				
-				<a href="<c:url value='/community/listBoard' />">
+				<a href="<c:url value='/community/adminListBoard' />">
 					<img src="<c:url value='/resources/img/community/jeongho_banner.png' />" alt="정호 커뮤니티 배너">
 				</a>
 	
@@ -32,7 +30,7 @@
 			<div id="section_wrap">
 			
 				<div class="word">
-					<h3>게시판</h3>
+					<h3>관리자 게시판</h3>
 				</div>
 			
 				<div class="search">
@@ -41,7 +39,7 @@
 					
 						<input type="text" name="keyword" value="${keyword}" placeholder="검색어를 입력하세요.">
 						<input type="submit" value="검색">
-						<a href="<c:url value='/community/listBoard' />">전체목록</a>
+						<a href="<c:url value='/community/adminListBoard' />">전체목록</a>
 					
 					</form>
 					
@@ -56,6 +54,7 @@
 								<th>작성자</th>
 								<th>제목</th>
 								<th>등록일</th>
+								<th>관리</th>
 							</tr>
 						</thead>
 						
@@ -73,7 +72,15 @@
 										${board.cb_title}
 										</a>
 									</td>
-									<td>${board.cb_reg_date}</td>					
+									<td>${board.cb_reg_date}</td>
+									
+									<td>
+									    <a href="<c:url value='/community/adminDeleteBoardConfirm'>
+									        <c:param name='cb_no' value='${board.cb_no}' />
+									        </c:url>"
+									        onclick="return confirm('게시글을 삭제하시겠습니까?');">삭제</a>
+									</td>			
+									
 								</tr>
 								
 							</c:forEach>
@@ -87,7 +94,7 @@
 				<div class="paging">
 	
 					<c:if test="${currentPage > 1}">
-						<a href="<c:url value='/community/listBoard'>
+						<a href="<c:url value='/community/adminListBoard'>
 							<c:param name='page' value='${currentPage - 1}' />
 						</c:url>">
 							이전
@@ -97,23 +104,19 @@
 					<c:forEach begin="1" end="${totalPage}" var="pageNum">
 				
 						<a class="${currentPage == pageNum ? 'active' : ''}"
-						   href="<c:url value='/community/listBoard'>
+						   href="<c:url value='/community/adminListBoard'>
 							<c:param name='page' value='${pageNum}' />
 						   </c:url>">${pageNum}</a>
 				
 					</c:forEach>
 				
 					<c:if test="${currentPage < totalPage}">
-						<a href="<c:url value='/community/listBoard'>
+						<a href="<c:url value='/community/adminListBoard'>
 							<c:param name='page' value='${currentPage + 1}' />
 						</c:url>">다음</a>
 					</c:if>
 				
 				</div>
-				
-				<div class="buttons">
-		            <a href="<c:url value='/community/writeBoardForm' />">게시글 작성</a>
-		        </div>
 		        
 			</div>
 			

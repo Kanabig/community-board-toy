@@ -282,5 +282,60 @@ public class CommunityBoardController {
 	    return modelAndView;
 	    
 	}
+	/*
+	 * 관리자 게시글 목록
+	 * /community/adminListBoard
+	 */
+	@GetMapping("/adminListBoard")
+	public ModelAndView adminListBoard(@RequestParam(value = "page", defaultValue = "1") int page, HttpSession session) {
+	    System.out.println(CLASS_NAME.concat("adminListBoard()"));
+
+	    Object object = session.getAttribute(Configs.LOGIN_ADMIN_MEMBER_ID);
+
+	    if (object == null) {
+
+	        ModelAndView modelAndView = new ModelAndView();
+	        modelAndView.setViewName("redirect:/admin/member/loginForm");
+
+	        return modelAndView;
+	        
+	    }
+
+	    if (page < 1) {page = 1;}
+
+	    List<CommunityBoardDto> communityBoardDtos = communityBoardService.listBoard(page);
+
+	    int totalBoardCount = communityBoardService.getBoardCount();
+	    int totalPage = (int) Math.ceil(totalBoardCount / 10.0);
+
+	    ModelAndView modelAndView = new ModelAndView();
+
+	    modelAndView.setViewName("community/admin_list_board");
+	    modelAndView.addObject("communityBoardDtos", communityBoardDtos);
+	    modelAndView.addObject("currentPage", page);
+	    modelAndView.addObject("totalPage", totalPage);
+
+	    return modelAndView;
+	    
+	}
+	
+	/*
+	 * 관리자 게시글 삭제
+	 * /community/adminDeleteBoardConfirm
+	 */
+	@GetMapping("/adminDeleteBoardConfirm")
+	public String adminDeleteBoardConfirm(@RequestParam("cb_no") int cb_no, HttpSession session) {
+	    System.out.println(CLASS_NAME.concat("adminDeleteBoardConfirm()"));
+
+	    String loginedAdminMemberId =(String) session.getAttribute(Configs.LOGIN_ADMIN_MEMBER_ID);
+
+	    if (loginedAdminMemberId == null) {return "redirect:/admin/member/loginForm";}
+
+	    communityBoardService.deleteBoardConfirm(cb_no);
+
+	    return "redirect:/community/adminListBoard";
+	    
+	}
+	
 	
 }
