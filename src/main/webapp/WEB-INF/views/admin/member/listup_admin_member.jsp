@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,9 +48,10 @@
 								<c:choose>
 									<c:when test="${item.a_approval eq 0}">
 										<c:url
-											value="/member/admin/setAdminApproval"
+											value="/admin/member/setAdminApproval"
 											var='approval_url'>
 											<c:param name="a_no" value="${item.a_no}" />
+											<c:param name="a_approval" value="1" />
 										</c:url>
 										<a href="${approval_url}">승인처리</a>
 									</c:when>

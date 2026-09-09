@@ -10,6 +10,8 @@
 
 <link href="<c:url value='/resources/css/admin/login_form.css' />" rel="stylesheet" type="text/css">
 
+<jsp:include page="../include/login_form_js.jsp" />
+
 </head>
 <body>
 
@@ -30,7 +32,7 @@
 			<div class="login_form">
 			
 				<form
-					action="<c:url value='/member/admin/loginConfirm'/>"
+					action="<c:url value='/admin/member/loginConfirm'/>"
 					name="login_form"
 					method="post">
 				

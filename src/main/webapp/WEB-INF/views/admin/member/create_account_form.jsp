@@ -10,6 +10,8 @@
 
 <link href="<c:url value='/resources/css/admin/create_account_form.css' />" rel="stylesheet" type="text/css">
 
+<jsp:include page="../include/create_account_form_js.jsp" />
+
 </head>
 <body>
 
@@ -30,7 +32,7 @@
 			<div class="create_account_form">
 			
 				<form
-					action="<c:url value='/member/admin/createAccountConfirm'/>"
+					action="<c:url value='/admin/member/createAccountConfirm'/>"
 					name="create_account_form"
 					method="post">
 				

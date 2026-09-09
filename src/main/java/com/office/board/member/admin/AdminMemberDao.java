@@ -7,11 +7,13 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.office.board.member.IMemberDao;
+
 import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class AdminMemberDao implements IAdminMemberDao {
+public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 	
 	private final String CLASS_NAME = "[AdminMemberDao] ";
 	private final int DB_CONNECTION_FAIL = -1;
@@ -146,7 +148,7 @@ public class AdminMemberDao implements IAdminMemberDao {
 			
 		}
 		
-		return adminMemberDtos.size() > 0 ? adminMemberDtos.get(0) : null;
+		return adminMemberDtos != null ? adminMemberDtos.get(0) : null;
 	}
 	
 	@Override
@@ -154,7 +156,7 @@ public class AdminMemberDao implements IAdminMemberDao {
 		System.out.println(CLASS_NAME.concat("selectMember()"));
 		
 		String sql = "SELECT * FROM tbl_admin WHERE a_no = ?";
-		List<AdminMemberDto> adminMemberDtos = new ArrayList<AdminMemberDto>();
+		List<AdminMemberDto> adminMemberDtos = null;
 		
 		try {
 			adminMemberDtos = jdbcTemplate.query(
@@ -168,7 +170,7 @@ public class AdminMemberDao implements IAdminMemberDao {
 			
 		}
 		
-		return adminMemberDtos.size() > 0 ? adminMemberDtos.get(0) : null;
+		return adminMemberDtos != null ? adminMemberDtos.get(0) : null;
 	}
 	
 	/**

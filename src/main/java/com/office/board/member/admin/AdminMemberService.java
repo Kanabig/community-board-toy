@@ -30,14 +30,13 @@ public class AdminMemberService {
 	public int createAccountConfirm(AdminMemberDto adminMemberDto) {
 		System.out.println(CLASS_NAME.concat("createAccountConfirm()"));
 		
-		/*
-		boolean isMember = adminMemberDao.isAdminMember(adminMemberDto.getA_id());
-		System.out.println(CLASS_NAME.concat("isMember" + isMember));
+		boolean isExists = 
+				adminMemberDao.isExists(adminMemberDto.getA_id());
 		
-		if (!isMember) {
+		
+		if (!isExists) {
 			String encodedPassword = passwordEncoder.encode(adminMemberDto.getA_pw());
 			adminMemberDto.setA_pw(encodedPassword);
-			*/
 		
 			int result = adminMemberDao.insertMember(adminMemberDto);
 			
@@ -50,13 +49,12 @@ public class AdminMemberService {
 				return ADMIN_ACCOUNT_CREATE_FAIL;
 				
 			}
-		/*	
+
 		} else {
 			System.out.println(CLASS_NAME.concat("ADMIN ACCOUNT CREATE FAIL"));
 			return ADMIN_ACCOUNT_ALREADY_EXIST;
 		
 		}
-		*/
 	}
 
 
@@ -72,11 +70,11 @@ public class AdminMemberService {
 				return selectAdminMemberDto.getA_id();
 				
 			} else {
-				System.out.println(CLASS_NAME.concat("ADMIN LOGIN FAIL"));
+				System.out.println(CLASS_NAME.concat("ADMIN LOGIN FAIL1"));
 				return null;
 			}
 		} else {
-			System.out.println(CLASS_NAME.concat("ADMIN LOGIN FAIL"));
+			System.out.println(CLASS_NAME.concat("ADMIN LOGIN FAIL2"));
 			return null;
 		}
 	}
