@@ -5,9 +5,25 @@ import java.util.List;
 public interface IMemberDao<T> {
 
 	public int insertMember(T memberDto);
+	
 	public int updateMember(T memberDto);
-	public T selectMember(String userId);
+	public int updateMemberApproval(T memberDto);
+	
+	public T selectMember(String memberId);
 	public T selectMember(int memberNo);
-//	public List<T> selectMembers(int memberNo);
-
+	public List<T> selectMembersByKeywordOfId(String keyword);
+	public List<T> selectAllMembers();
+	
+	/**
+	 * dto 내용 출력
+	 * @param dto
+	 */
+	public void printDto(T dto);
+	
+	/**
+	 * dtos를 순회하며 하나씩 내용 출력
+	 * @param dtos
+	 */
+	public void printDtos(List<T> dtos);
+	
 }

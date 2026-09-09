@@ -42,6 +42,9 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return result;
 	}
 
+	/**
+	 * u_no에 해당하는 멤버의 u_phone 변경
+	 */
 	@Override
 	public int updateMember(UserMemberDto memberDto) {
 		System.out.println(CLASS_NAME.concat("updateMember()"));
@@ -62,6 +65,16 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * UserMemberDao에서는 사용할 필요 없음. 무조건 DB_CONNECTION_FAIL(-1)반환
+	 */
+	@Override
+	public int updateMemberApproval(UserMemberDto userMemberDto) {
+		System.out.println(CLASS_NAME.concat("updateMemberApproval()"));
+		
+		return DB_CONNECTION_FAIL;
 	}
 
 	@Override
@@ -108,39 +121,70 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return userMemberDtos.size() > 0 ? userMemberDtos.get(0) : null;
 	}
 
+	/**
+	 * u_id가 %keyword%조건에 걸리는 멤버들 반환
+	 */
+	@Override
+	public List<UserMemberDto> selectMembersByKeywordOfId(String keyword) {
+		System.out.println(CLASS_NAME.concat("selectMembersByKeywordOfId()"));
+		
+		String sql = "SELECT * FROM tbl_user WHERE u_id LIKE ?";
+		List<UserMemberDto> userMemberDtos = null;
+		
+		try {
+			userMemberDtos = jdbcTemplate.query(
+					sql, 
+					BeanPropertyRowMapper.newInstance(UserMemberDto.class),
+					"%" + keyword + "%"
+			);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return userMemberDtos;
+	}
 	
-	public boolean isUserMember(String u_id) {
-		System.out.println(CLASS_NAME.concat("isUserMember()"));
+	@Override
+	public List<UserMemberDto> selectAllMembers() {
+		System.out.println(CLASS_NAME.concat("selectAllMembers()"));
 		
-		String sql = "SELECT COUNT(*) FROM tbl_user "
-					+ "WHERE u_id = ?";
+		String sql = "SELECT * FROM tbl_user";
+		List<UserMemberDto> userMemberDtos = null;
 		
-		int result = jdbcTemplate.queryForObject(sql, Integer.class, u_id);
+		try {
+			userMemberDtos = jdbcTemplate.query(
+					sql, 
+					BeanPropertyRowMapper.newInstance(UserMemberDto.class)
+			);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
 		
-		return result > 0 ? true :false;
+		return userMemberDtos;
+	}
+	
+	@Override
+	public void printDto(UserMemberDto dto) {
+		System.out.println(CLASS_NAME.concat("printDto()"));
+		
+		System.out.println("a_no: " + dto.getU_no());
+		System.out.println("a_id: " + dto.getU_id());
+		System.out.println("a_pw: " + dto.getU_pw());
+		System.out.println("a_phone: " + dto.getU_phone());
+		System.out.println("a_mod_date: " + dto.getU_mod_date());
 	}
 
-
-//	@Override
-//	public List<UserMemberDto> selectMembers(int memberNo) {
-//		System.out.println(CLASS_NAME.concat("selectMember()"));
-//		
-//		String sql = "SELECT * FROM tbl_user WHERE u_no = ?";
-//		List<UserMemberDto> userMemberDtos = null;
-//		
-//		try {
-//			userMemberDtos = jdbcTemplate.query(
-//					sql, 
-//					BeanPropertyRowMapper.newInstance(UserMemberDto.class),
-//					memberNo
-//			);
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			
-//		}
-//		
-//		return userMemberDtos;
-//	}
+	@Override
+	public void printDtos(List<UserMemberDto> dtos) {
+		System.out.println(CLASS_NAME.concat("printDtos()"));
+		
+		for(UserMemberDto dto : dtos) {
+			printDto(dto);
+		}
+	}
 	
 }
