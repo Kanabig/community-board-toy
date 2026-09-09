@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class AdminMemberDto {
 
 	private int a_no;
-    private int a_approval;
+	private int a_approval;
 	private String a_id;
 	private String a_pw;
 	private String a_phone;

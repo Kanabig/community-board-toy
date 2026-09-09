@@ -49,6 +49,7 @@ public class CommunityBoardDao {
     	System.out.println(CLASS_NAME.concat("selectAllBoards()"));
 
     	String sql = "SELECT * FROM tbl_community_board "
+    			+ "WHERE cb_deleted = 0 "
         		+ "ORDER BY cb_no DESC";
 
     	List<CommunityBoardDto> communityBoardDtos = null;
@@ -70,7 +71,8 @@ public class CommunityBoardDao {
         System.out.println(CLASS_NAME.concat("selectBoardByCbNo()"));
 
         String sql = "SELECT * FROM tbl_community_board "
-                   + "WHERE cb_no = ?";
+                   + "WHERE cb_no = ? "
+                   + "AND cb_deleted = 0";
 
         List<CommunityBoardDto> communityBoardDtos = null;
 
@@ -101,7 +103,8 @@ public class CommunityBoardDao {
     	String sql = "UPDATE tbl_community_board SET "
                    + "cb_title = ?, "
                    + "cb_comment = ? "
-                   + "WHERE cb_no = ?";
+                   + "WHERE cb_no = ? "
+                   + "AND cb_deleted = 0";
 
         int result = -1;
 
@@ -123,8 +126,10 @@ public class CommunityBoardDao {
     public int deleteBoard(int cb_no) {
         System.out.println(CLASS_NAME.concat("deleteBoard()"));
         
-        String sql = "DELETE FROM tbl_community_board "
-                   + "WHERE cb_no = ?";
+        String sql = "UPDATE tbl_community_board "
+                + "SET cb_deleted = 1 "
+                + "WHERE cb_no = ? "
+                + "AND cb_deleted = 0";
 
         int result = -1;
 
