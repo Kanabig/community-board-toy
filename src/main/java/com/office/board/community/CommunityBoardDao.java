@@ -55,7 +55,6 @@ public class CommunityBoardDao {
     	List<CommunityBoardDto> communityBoardDtos = null;
 
     	try {
-    		
     		communityBoardDtos = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommunityBoardDto.class));
 
     	} catch (Exception e) {
@@ -77,7 +76,6 @@ public class CommunityBoardDao {
         List<CommunityBoardDto> communityBoardDtos = null;
 
         try {
-        	
         	communityBoardDtos = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommunityBoardDto.class),cb_no);
 
         } catch (Exception e) {
@@ -109,7 +107,6 @@ public class CommunityBoardDao {
         int result = -1;
 
         try {
-
             result = jdbcTemplate.update(sql,
                     communityBoardDto.getCb_title(),
                     communityBoardDto.getCb_comment(),
@@ -134,7 +131,6 @@ public class CommunityBoardDao {
         int result = -1;
 
         try {
-
             result = jdbcTemplate.update(sql, cb_no);
 
         } catch (Exception e) {
@@ -160,6 +156,52 @@ public class CommunityBoardDao {
         try {
             communityBoardDtos = jdbcTemplate.query(sql,
             		BeanPropertyRowMapper.newInstance(CommunityBoardDto.class), "%" + keyword + "%", "%" + keyword + "%");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+
+        return communityBoardDtos;
+        
+    }
+
+    public int selectBoardCount() {
+    	System.out.println(CLASS_NAME.concat("selectBoardCount()"));
+
+        String sql = "SELECT COUNT(*) FROM tbl_community_board "
+                   + "WHERE cb_deleted = 0";
+
+        int count = 0;
+
+        try {
+            count = jdbcTemplate.queryForObject(sql,Integer.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
+
+        return count;
+        
+    }
+
+    public List<CommunityBoardDto> selectBoardsByPage(int page) {
+        System.out.println(CLASS_NAME.concat("selectBoardsByPage()"));
+
+        int pageSize = 10;
+        int offset = (page - 1) * pageSize;
+
+        String sql = "SELECT * FROM tbl_community_board "
+                   + "WHERE cb_deleted = 0 "
+                   + "ORDER BY cb_reg_date DESC "
+                   + "LIMIT ?, ?";
+
+        List<CommunityBoardDto> communityBoardDtos = null;
+
+        try {
+            communityBoardDtos = jdbcTemplate.query(sql, 
+            		BeanPropertyRowMapper.newInstance(CommunityBoardDto.class), offset, pageSize);
 
         } catch (Exception e) {
             e.printStackTrace();

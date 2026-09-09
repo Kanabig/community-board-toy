@@ -86,18 +86,27 @@ public class CommunityBoardController {
 	 * /community/listBoard
 	 */
 	@GetMapping("/listBoard")
-	public ModelAndView listBoard() {
-		System.out.println(CLASS_NAME.concat("listBoard()"));
-		
-	    String nextPage = "community/list_board";
+	public ModelAndView listBoard(@RequestParam(value = "page", defaultValue = "1") int page) {
+	    System.out.println(CLASS_NAME.concat("listBoard()"));
 
-	    List<CommunityBoardDto> communityBoardDtos = communityBoardService.listBoard();
+	    // 페이지가 1보다 작으면 1페이지
+	    if (page < 1) {page = 1;}
+
+	    // 현재 페이지 게시글 10개 조회
+	    List<CommunityBoardDto> communityBoardDtos = communityBoardService.listBoard(page);
+
+	    // 전체 게시글 개수
+	    int totalBoardCount = communityBoardService.getBoardCount();
+
+	    // 전체 페이지
+	    int totalPage = (int) Math.ceil(totalBoardCount / 10.0);
 
 	    ModelAndView modelAndView = new ModelAndView();
-
-	    modelAndView.setViewName(nextPage);
-
+	    
+	    modelAndView.setViewName("community/list_board");
 	    modelAndView.addObject("communityBoardDtos", communityBoardDtos);
+	    modelAndView.addObject("currentPage", page);
+	    modelAndView.addObject("totalPage", totalPage);
 
 	    return modelAndView;
 	    
@@ -256,6 +265,7 @@ public class CommunityBoardController {
 	
 	/*
 	 * 게시글 검색
+	 * /community/searchBoards
 	 */
 	@GetMapping("/searchBoards")
 	public ModelAndView searchBoards(@RequestParam("keyword") String keyword) {
