@@ -9,6 +9,9 @@ public interface IMemberDao<T> {
 	public int updateMember(T memberDto);
 	public int updateMemberApproval(T memberDto);
 	
+	public boolean isExists(String memberId);
+	public boolean isExists(int memberNo);
+	
 	public T selectMember(String memberId);
 	public T selectMember(int memberNo);
 	public List<T> selectMembersByKeywordOfId(String keyword);

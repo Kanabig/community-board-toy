@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.office.board.member.IMemberDao;
+import com.office.board.member.admin.AdminMemberDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -77,6 +78,42 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return DB_CONNECTION_FAIL;
 	}
 
+	@Override
+	public boolean isExists(String memberId) {
+		System.out.println(CLASS_NAME.concat("isExists()"));
+		
+		String sql = "SELECT EXISTS (SELECT 1 FROM tbl_user WHERE u_id = ?)";
+		Boolean isMemberExists = false; 
+				
+		try {
+			isMemberExists = jdbcTemplate.queryForObject(sql, Boolean.class, memberId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return isMemberExists;
+	}
+
+	@Override
+	public boolean isExists(int memberNo) {
+		System.out.println(CLASS_NAME.concat("isExists()"));
+
+		String sql = "SELECT EXISTS (SELECT 1 FROM tbl_user WHERE u_no = ?)";
+		Boolean isMemberExists = false; 
+				
+		try {
+			isMemberExists = jdbcTemplate.queryForObject(sql, Boolean.class, memberNo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return isMemberExists;
+	}
+	
 	@Override
 	public UserMemberDto selectMember(String userId) {
 		System.out.println(CLASS_NAME.concat("selectMember()"));
