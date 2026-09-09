@@ -1,13 +1,14 @@
 package com.office.board.member.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.office.board.member.IMemberDao;
-import com.office.board.member.admin.AdminMemberDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -43,9 +44,7 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return result;
 	}
 
-	/**
-	 * u_no에 해당하는 멤버의 u_phone 변경
-	 */
+	
 	@Override
 	public int updateMember(UserMemberDto memberDto) {
 		System.out.println(CLASS_NAME.concat("updateMember()"));
@@ -68,9 +67,7 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return result;
 	}
 	
-	/**
-	 * UserMemberDao에서는 사용할 필요 없음. 무조건 DB_CONNECTION_FAIL(-1)반환
-	 */
+	
 	@Override
 	public int updateMemberApproval(UserMemberDto userMemberDto) {
 		System.out.println(CLASS_NAME.concat("updateMemberApproval()"));
@@ -158,9 +155,7 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return userMemberDtos.size() > 0 ? userMemberDtos.get(0) : null;
 	}
 
-	/**
-	 * u_id가 %keyword%조건에 걸리는 멤버들 반환
-	 */
+
 	@Override
 	public List<UserMemberDto> selectMembersByKeywordOfId(String keyword) {
 		System.out.println(CLASS_NAME.concat("selectMembersByKeywordOfId()"));
@@ -223,5 +218,5 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 			printDto(dto);
 		}
 	}
-	
+
 }
