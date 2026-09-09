@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 	
 	private final String CLASS_NAME = "[AdminMemberDao] ";
-	private final int DB_CONNECTION_FAIL = -1;;
+	private final int DB_CONNECTION_FAIL = -1;
 	
 	private final JdbcTemplate jdbcTemplate;
 	
@@ -90,6 +90,42 @@ public class AdminMemberDao implements IMemberDao<AdminMemberDto> {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public boolean isExists(String memberId) {
+		System.out.println(CLASS_NAME.concat("isExists()"));
+		
+		String sql = "SELECT EXISTS (SELECT 1 FROM tbl_admin WHERE a_id = ?)";
+		Boolean isMemberExists = false; 
+				
+		try {
+			isMemberExists = jdbcTemplate.queryForObject(sql, Boolean.class, memberId);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return isMemberExists;
+	}
+
+	@Override
+	public boolean isExists(int memberNo) {
+		System.out.println(CLASS_NAME.concat("isExists()"));
+
+		String sql = "SELECT EXISTS (SELECT 1 FROM tbl_admin WHERE a_no = ?)";
+		Boolean isMemberExists = false; 
+				
+		try {
+			isMemberExists = jdbcTemplate.queryForObject(sql, Boolean.class, memberNo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return isMemberExists;
 	}
 	
 	@Override
