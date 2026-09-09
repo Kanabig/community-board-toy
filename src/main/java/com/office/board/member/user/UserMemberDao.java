@@ -5,9 +5,10 @@ import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.office.board.member.core.IMemberDao;
+import com.office.board.member.IMemberDao;
 
 import lombok.RequiredArgsConstructor;
 
@@ -66,6 +67,14 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return result;
 	}
 	
+	
+	@Override
+	public int updateMemberApproval(UserMemberDto userMemberDto) {
+		System.out.println(CLASS_NAME.concat("updateMemberApproval()"));
+		
+		return DB_CONNECTION_FAIL;
+	}
+
 	@Override
 	public boolean isExists(String memberId) {
 		System.out.println(CLASS_NAME.concat("isExists()"));
@@ -107,7 +116,7 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		System.out.println(CLASS_NAME.concat("selectMember()"));
 		
 		String sql = "SELECT * FROM tbl_user WHERE u_id = ?";
-		List<UserMemberDto> userMemberDtos = new ArrayList<UserMemberDto>();
+		List<UserMemberDto> userMemberDtos = null;
 		
 		try {
 			userMemberDtos = jdbcTemplate.query(
@@ -129,7 +138,7 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		System.out.println(CLASS_NAME.concat("selectMember()"));
 		
 		String sql = "SELECT * FROM tbl_user WHERE u_no = ?";
-		List<UserMemberDto> userMemberDtos = new ArrayList<UserMemberDto>();
+		List<UserMemberDto> userMemberDtos = null;
 		
 		try {
 			userMemberDtos = jdbcTemplate.query(
