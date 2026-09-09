@@ -20,7 +20,7 @@
 				<li><a href="<c:url value='/admin/member/logoutConfirm' />">로그아웃</a></li>
 				<li><a href="<c:url value='/admin/member/listupAdminMember' />">관리자목록</a></li>
 				<li><a href="<c:url value='/admin/member/listupUserMember' />">사용자목록</a></li>
-				<li><a href="#none">관리자게시판</a></li>
+				<li><a href="<c:url value='/community/listBoard' />">관리자게시판</a></li>
 			</ul>
 		</div>
 		
