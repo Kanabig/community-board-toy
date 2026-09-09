@@ -7,21 +7,21 @@
 </head>
 <body>
 
-	<!-- 
+	<!--  
 	<jsp:include page="../../include/header.jsp" />
 	
 	<jsp:include page="../include/nav.jsp" />
-	 -->
+	-->
 
 	<section>
 	
 		<div class="word">
-			<h3>CREATE ACCOUNT FAIL!!</h3>
+			<h3>LOGIN SUCCESS!!</h3>
 		</div>
 		
 		<div class="others">
 				<a href="<c:url value='/user/member/createAccountForm'/>">create account</a>
-				<a href="<c:url value='/user/member/loginForm'/>">login</a>
+				<a href="<c:url value='/user/member/modify'/>">modify</a>
 			</div>
 	
 	</section>

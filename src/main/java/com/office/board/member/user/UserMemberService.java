@@ -37,13 +37,16 @@ public class UserMemberService {
 		System.out.println(CLASS_NAME.concat("createAccountConfirm()")); 
 
 		 
-		boolean isMember = userMemberDao.isUserMember(userMemberDto.getU_id()); 
+
+	    UserMemberDto selectedUserMemberDto =
+	            userMemberDao.selectMember(userMemberDto.getU_id());
 
 			 
-		if (!isMember) { 
+		if (selectedUserMemberDto == null) { 
 	
 			 
-			String encodedpassword = passwordEncoder.encode(userMemberDto.getU_pw()); 
+			String encodedpassword =
+					passwordEncoder.encode(userMemberDto.getU_pw()); 
 		
 
 			userMemberDto.setU_pw(encodedpassword); 
@@ -68,7 +71,7 @@ public class UserMemberService {
 		System.out.println(CLASS_NAME.concat("loginConfirm()"));
 		
 		UserMemberDto selectedUserMemberDto =
-				 userMemberDao.selectUser(userMemberDto.getU_id());
+				 userMemberDao.selectMember(userMemberDto.getU_id());
 		
 		if (selectedUserMemberDto != null) {
 			if (passwordEncoder.matches(userMemberDto.getU_pw(), selectedUserMemberDto.getU_pw())) {
@@ -84,6 +87,13 @@ public class UserMemberService {
 		
 		System.out.println(CLASS_NAME.concat("로그인 실패!!"));
 		return null;
-	} 
+	}
+
+	public UserMemberDto modifyAccountForm(String loginedUserMemberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }
