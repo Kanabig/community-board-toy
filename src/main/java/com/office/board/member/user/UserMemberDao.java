@@ -108,6 +108,19 @@ public class UserMemberDao implements IMemberDao<UserMemberDto>{
 		return userMemberDtos.size() > 0 ? userMemberDtos.get(0) : null;
 	}
 
+	
+	public boolean isUserMember(String u_id) {
+		System.out.println(CLASS_NAME.concat("isUserMember()"));
+		
+		String sql = "SELECT COUNT(*) FROM tbl_user "
+					+ "WHERE u_id = ?";
+		
+		int result = jdbcTemplate.queryForObject(sql, Integer.class, u_id);
+		
+		return result > 0 ? true :false;
+	}
+
+
 //	@Override
 //	public List<UserMemberDto> selectMembers(int memberNo) {
 //		System.out.println(CLASS_NAME.concat("selectMember()"));
