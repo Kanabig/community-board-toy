@@ -202,7 +202,7 @@ public class AdminMemberController {
 		if (object == null)
 			return "redirect:/member/admin/login_form";
 		
-		String nextPage = "redirect:/community/list_board";
+		String nextPage = "redirect:/member/admin/list_board_admin";
 		
 		adminMemberService.setDeletedBoard(cb_no);
 		
