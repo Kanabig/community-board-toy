@@ -26,6 +26,7 @@
             </ul>
 
          </div>
+         
       <%
          } else {
       %>
@@ -44,15 +45,6 @@
       <%
          }
       %>
-
-      <div class="search">
-
-         <form action="<c:url value='/community/searchBoards'/>" method="get">
-            <input type="text" name="keyword" placeholder="게시글을 검색하세요.">
-            <input type="submit" value="search">
-         </form>
-
-      </div>
 
    </div>
 
