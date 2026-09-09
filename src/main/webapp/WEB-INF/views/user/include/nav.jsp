@@ -21,8 +21,8 @@
             <ul>
                <li><a href="<c:url value='/user/member/createAccountForm'/>">회원가입</a></li>
                <li><a href="<c:url value='/user/member/loginForm'/>">로그인</a></li>
-               <li><a href="<c:url value='/community/listBoard'/>">홈</a></li>
-               <li><a href="<c:url value='/admin/member/loginForm'/>">관리자</a></li>
+               <li><a href="<c:url value='/community/listBoard'/>">게시판</a></li>
+
             </ul>
 
          </div>

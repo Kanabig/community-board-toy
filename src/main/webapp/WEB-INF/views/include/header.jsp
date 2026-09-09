@@ -7,8 +7,8 @@
 	<div id="header_wrap">
 		<div class="menu">
 			<ul>
-				<li><a class="user" href="<c:url value='/user/member/home'/>">USER HOME</a></li>
-				<li><a class="admin" href="<c:url value='/admin/member/home'/>">ADMIN HOME</a></li>
+				<li><a class="user" href="<c:url value='/user/member/'/>">USER HOME</a></li>
+				<li><a class="admin" href="<c:url value='/admin/member/loginForm'/>">ADMIN HOME</a></li>
 			</ul>
 		</div>
 		<div class="title">
